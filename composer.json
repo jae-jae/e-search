@@ -1,0 +1,21 @@
+{
+
+    "name": "jaeger/querylist",
+    "description": "Elasticsearch5 PHP Api",
+    "keywords":["elasticsearch"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jaeger",
+            "email": "JaegerCode@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+	"autoload":{
+        "psr-4":{
+            "Jaeger\\":"src"
+        }
+    }
+}

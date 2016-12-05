@@ -22,20 +22,11 @@ class Es
         $this->http = new Client();
     }
 
-    private function makeRequestUrl($f = null)
-    {
-        $url = sprintf('%s/%s/%s',$this->config['server_url'],$this->config['index'],$this->config['type']);
-        $f && $url = sprintf('%s/%s',$url,$f);
-        return $url;
-    }
 
     public function search($data)
     {
         $f = '_search';
-        if(is_array($data))
-        {
-            $data = json_encode($data);
-        }elseif(is_string($data) && !EsTools::isJson($data))
+        if(is_string($data) && !EsTools::isJson($data))
         {
             $f .= '?q='.$data;
             $data = '';
@@ -43,15 +34,37 @@ class Es
         return $this->request('GET',$f,$data);
     }
 
+    public function setMapping($config)
+    {
+        $config = [
+            'properties' => $config
+        ];
+        return $this->request('PUT','_mapping',$config);
+    }
+
+    public function index($id,$data)
+    {
+        return $this->request('PUT',$id,$data);
+    }
+
 
     private function request($method,$f,$data)
     {
+        is_array($data) && $data = json_encode($data,JSON_FORCE_OBJECT);
         $url = $this->makeRequestUrl($f);
         $response = $this->http->request($method,$url,[
             'body' => $data
         ]);
         return json_decode($response->getBody(),true);
     }
+
+    private function makeRequestUrl($f = null)
+    {
+        $url = sprintf('%s/%s/%s',$this->config['server_url'],$this->config['index'],$this->config['type']);
+        $f && $url = sprintf('%s/%s',$url,$f);
+        return $url;
+    }
+
 
 
 }

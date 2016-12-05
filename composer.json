@@ -1,6 +1,6 @@
 {
 
-    "name": "jaeger/querylist",
+    "name": "jaeger/e-search",
     "description": "Elasticsearch5 PHP Api",
     "keywords":["elasticsearch"],
     "license": "MIT",

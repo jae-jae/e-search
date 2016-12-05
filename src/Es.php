@@ -16,13 +16,18 @@ class Es
     );
     private $http;
 
-    public function __construct($config)
+    public function __construct($config = null)
     {
-        $this->config = array_merge($this->config,$config);
+        $config && $this->config = array_merge($this->config,$config);
         $this->http = new Client();
     }
 
 
+    /**
+     * 搜索
+     * @param $data
+     * @return mixed
+     */
     public function search($data)
     {
         $f = '_search';
@@ -34,6 +39,11 @@ class Es
         return $this->request('GET',$f,$data);
     }
 
+    /**
+     * 设置映射
+     * @param $config
+     * @return mixed
+     */
     public function setMapping($config)
     {
         $config = [
@@ -42,9 +52,32 @@ class Es
         return $this->request('PUT','_mapping',$config);
     }
 
+    /**
+     * 索引数据
+     * @param $id
+     * @param $data
+     * @return mixed
+     */
     public function index($id,$data)
     {
         return $this->request('PUT',$id,$data);
+    }
+
+    public function setIndex($index)
+    {
+        $this->config['index'] = $index;
+        return $this;
+    }
+
+    public function setType($type)
+    {
+        $this->config['type'] = $type;
+        return $this;
+    }
+
+    public function getConfig()
+    {
+        return $this->config;
     }
 
 

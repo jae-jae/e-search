@@ -17,6 +17,11 @@ $es = new \Jaeger\Es([
     //类型
     'type' => 'article'
 ]);
+
+//or
+
+$es = (new \Jaeger\Es())->setIndex('news')->setType('article');
+
 ```
 
 

@@ -6,6 +6,11 @@ Elasticsearch5 PHP Api
 问：为什么官方已经有了Elasticsearch的PHP包，我还要写一个？
 答：任性
 
+＃　Install
+```
+composer require jaeger/e-search:dev-master
+```
+
 # Code Example
 
 ```php

@@ -83,7 +83,7 @@ class Es
 
     private function request($method,$f,$data)
     {
-        is_array($data) && $data = json_encode($data,JSON_FORCE_OBJECT);
+        is_array($data) && $data = json_encode($data);
         $url = $this->makeRequestUrl($f);
         $response = $this->http->request($method,$url,[
             'body' => $data

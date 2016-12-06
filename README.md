@@ -66,7 +66,8 @@ $query = [
     ],
     'highlight' => [
         'fields' => [
-            'content' => []
+            //此处有坑
+            'content' => (object)[]
         ]
     ]
 ];

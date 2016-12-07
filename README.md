@@ -45,13 +45,21 @@ $result = $es->setMapping([
 ]);
 ```
 
-## Index 索引数据
+## Index/Update 索引数据/更新数据
 ```php
 $result = $es->index(1,[
     'id' => 1,
     'title' => 'This is title',
     'content' => 'This is content'
 ]);
+```
+
+## Delete 删除数据
+```php
+//delete document for id 1
+$result = $es->delete(1);
+//delete all documents of  current type
+$result = $es->delete();
 ```
 
 ## Search　搜索
@@ -99,3 +107,7 @@ $query = 'this is content';
 //or
 $query = 'content:this is content';
 ```
+
+# Author
+
+Jaeger <JaegerCode@gmail.com>

@@ -53,7 +53,7 @@ class Es
     }
 
     /**
-     * 索引数据
+     * 索引数据/更新数据
      * @param $id
      * @param $data
      * @return mixed
@@ -61,6 +61,22 @@ class Es
     public function index($id,$data)
     {
         return $this->request('PUT',$id,$data);
+    }
+
+    /**
+     * 删除
+     * @param string $id
+     * @return mixed
+     */
+    public function delete($id = null)
+    {
+        if(is_null($id)){
+            //delete all documents of  current type
+            $rt = $this->request('POST','_delete_by_query');
+        }else{
+            $rt = $this->request('DELETE',$id);
+        }
+        return $rt;
     }
 
     public function setIndex($index)
@@ -81,7 +97,7 @@ class Es
     }
 
 
-    private function request($method,$f,$data)
+    public function request($method,$f,$data = '{}')
     {
         is_array($data) && $data = json_encode($data);
         $url = $this->makeRequestUrl($f);

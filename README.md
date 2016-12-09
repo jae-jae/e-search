@@ -62,6 +62,13 @@ $result = $es->delete(1);
 $result = $es->delete();
 ```
 
+## Count 获取当前类型的文档总数量
+```php
+$result = $es->count();
+//or
+$result = $es->request('GET','_count');
+```
+
 ## Search　搜索
 
 ```
@@ -106,6 +113,27 @@ $query = '{
 $query = 'this is content';
 //or
 $query = 'content:this is content';
+```
+
+## Other Command 其它命令
+```php
+/**
+ * send command 发送命令
+ * @param  string           $method  GET,PUT,DELETE,etc
+ * @param  string           $command '_search','_count','_mapping',etc
+ * @param  array|jsonString $data 　　　send command　with data 
+ */
+$result = $es->request($method,$command,$data);
+
+//example
+$result = $this->request('GET','_search',[
+    'query' => [
+        'match' => [
+            'content' => 'this is content'
+        ]
+    ]
+]);
+
 ```
 
 # Author

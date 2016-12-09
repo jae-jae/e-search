@@ -79,6 +79,15 @@ class Es
         return $rt;
     }
 
+    /**
+     * 获取当前类型的文档总数量
+     * @return mixed
+     */
+    public function count()
+    {
+        return $this->request('GET','_count');
+    }
+
     public function setIndex($index)
     {
         $this->config['index'] = $index;
@@ -96,7 +105,13 @@ class Es
         return $this->config;
     }
 
-
+    /**
+     * 发送命令
+     * @param   $method  GET,PUT,DELETE,etc
+     * @param   $f      command
+     * @param  string $data   
+     * @return array         
+     */
     public function request($method,$f,$data = '{}')
     {
         is_array($data) && $data = json_encode($data);

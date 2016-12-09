@@ -69,6 +69,13 @@ $result = $es->count();
 $result = $es->request('GET','_count');
 ```
 
+## Id 获取指定ID的文档
+```
+$result = $es->id(1);
+//or
+$result = $es->request('GET',1);
+```
+
 ## Search　搜索
 
 ```

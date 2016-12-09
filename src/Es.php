@@ -88,6 +88,15 @@ class Es
         return $this->request('GET','_count');
     }
 
+    /**
+     * 获取指定ID的文档
+     * @return mixed
+     */
+    public function id($id)
+    {
+        return $this->request('GET',$id);
+    }
+
     public function setIndex($index)
     {
         $this->config['index'] = $index;
